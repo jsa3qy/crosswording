@@ -23,7 +23,7 @@ def main(username=USERNAME, password=PASSWORD):
     
     options = webdriver.ChromeOptions()
     #options.add_argument('headless') #open a headless browser 
-    browser = webdriver.Chrome(executable_path=binary_path, options=options)
+    browser = webdriver.Chrome(executable_path="./chromedriver", options=options)
     wait = WebDriverWait(browser, get_delay())
     browser.set_window_size(1440, 900) #defining window size stops headless from erroring for .click() functions
 
