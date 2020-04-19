@@ -1,0 +1,7 @@
+bs4
+requests
+selenium
+regex
+Lib
+python-csv
+chromedriver-py
