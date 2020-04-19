@@ -40,8 +40,8 @@ def main(username=USERNAME, password=PASSWORD):
 
     time.sleep(get_delay())
     try:
-        username_input = browser.find_element_by_id(username)
-        password_input = browser.find_element_by_id(password)
+        username_input = browser.find_element_by_id("username")
+        password_input = browser.find_element_by_id("password")
     except NoSuchElementException:
         eprint("NoSuchElementException: username or password field not found")
         sys.exit(1)
