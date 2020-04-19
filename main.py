@@ -19,7 +19,8 @@ DELAY = 5 # seconds, max wait time when we mutate observe
 USERNAME = "jesseboy624@aol.com"
 PASSWORD = "PASSWORD"
 
-def main():
+def main(username=USERNAME, password=PASSWORD):
+    
     options = webdriver.ChromeOptions()
     #options.add_argument('headless') #open a headless browser 
     browser = webdriver.Chrome(executable_path=binary_path, options=options)
@@ -39,8 +40,8 @@ def main():
 
     time.sleep(get_delay())
     try:
-        username_input = browser.find_element_by_id('username')
-        password_input = browser.find_element_by_id('password')
+        username_input = browser.find_element_by_id(username)
+        password_input = browser.find_element_by_id(password)
     except NoSuchElementException:
         eprint("NoSuchElementException: username or password field not found")
         sys.exit(1)
@@ -74,4 +75,11 @@ def eprint(*args, **kwargs):
 
 #main
 if __name__ == "__main__":
-    main()
+    if sys.argv[1]:
+        username = sys.argv[1]
+    if sys.argv[2]:
+        password = sys.argv[2]
+    if username and password:
+        main(username, password)
+    else:
+        main()
