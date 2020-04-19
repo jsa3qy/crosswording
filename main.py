@@ -16,10 +16,10 @@ import sys
 import random
 
 DELAY = 5 # seconds, max wait time when we mutate observe
-USERNAME = "jesseboy624@aol.com"
+USERNAME = "FAKE_USER"
 PASSWORD = "PASSWORD"
 
-def main(username=USERNAME, password=PASSWORD):
+def main(username, password):
     
     options = webdriver.ChromeOptions()
     #options.add_argument('headless') #open a headless browser 
@@ -46,9 +46,9 @@ def main(username=USERNAME, password=PASSWORD):
         eprint("NoSuchElementException: username or password field not found")
         sys.exit(1)
 
-    username_input.send_keys(USERNAME)
+    username_input.send_keys(username)
     time.sleep(get_delay())
-    password_input.send_keys(PASSWORD)
+    password_input.send_keys(password)
     time.sleep(get_delay())
 
     #submit login credential
