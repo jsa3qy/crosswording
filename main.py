@@ -13,16 +13,17 @@ import time
 import re
 import csv
 import sys
+import random
 
 DELAY = 5 # seconds, max wait time when we mutate observe
 USERNAME = "jesseboy624@aol.com"
-PASSWORD = "newyorktimesBilbo624"
+PASSWORD = "PASSWORD"
 
 def main():
     options = webdriver.ChromeOptions()
     #options.add_argument('headless') #open a headless browser 
     browser = webdriver.Chrome(executable_path=binary_path, options=options)
-    wait = WebDriverWait(browser, DELAY)
+    wait = WebDriverWait(browser, get_delay())
     browser.set_window_size(1440, 900) #defining window size stops headless from erroring for .click() functions
 
     #login page to access the root page of interest
@@ -30,12 +31,13 @@ def main():
     browser.find_element_by_class_name('lbd-button.black')
     try:
         login_btn = browser.find_element_by_class_name('lbd-button.black')
+        time.sleep(get_delay())
         login_btn.click()
     except NoSuchElementException:
             eprint("NoSuchElementException: element id 'lbd-button.black' not found")
             sys.exit(1)
 
-    browser.implicitly_wait(DELAY)
+    time.sleep(get_delay())
     try:
         username_input = browser.find_element_by_id('username')
         password_input = browser.find_element_by_id('password')
@@ -44,11 +46,14 @@ def main():
         sys.exit(1)
 
     username_input.send_keys(USERNAME)
+    time.sleep(get_delay())
     password_input.send_keys(PASSWORD)
+    time.sleep(get_delay())
 
     #submit login credential
     try:
         submit_btn = browser.find_element_by_class_name('css-nrhj9s-buttonBox-buttonBox-primaryButton-primaryButton-Button')
+        time.sleep(get_delay())
         submit_btn.click()
     except NoSuchElementException:
             eprint("NoSuchElementException: element class 'css-nrhj9s-buttonBox-buttonBox-primaryButton-primaryButton-Button' not found")
@@ -61,11 +66,8 @@ def main():
     for btn in potential_btns:
         print(btn)
 
-
-
-
-
-
+def get_delay():
+    return random.randint(4,8)
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
